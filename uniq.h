@@ -7,6 +7,6 @@
 using std::string;
 using std::vector;
 
-vector<string> uniq(vector<string> svec);
+void uniq(vector<string> &svec);
 
 #endif

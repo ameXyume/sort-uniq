@@ -8,7 +8,7 @@ using std::endl;
 using std::string;
 using std::vector;
 
-vector<string> bubble(vector<string> svec){
+void bubble(vector<string> &svec){
 	bool sw = false;
 
 	for(decltype(svec.size()) i = 0; i <= svec.size() - 1; i++){
@@ -22,10 +22,9 @@ vector<string> bubble(vector<string> svec){
 		if(!sw)
 			break;
 	}
-	return svec;
 }
 
-vector<string> select(vector<string> svec){
+void select(vector<string> &svec){
 	for(decltype(svec.size()) i = 0; i <= svec.size() - 1; i++){
 		auto x = svec.size() - 1;
 		for (decltype(svec.size()) ix = i; ix <= svec.size() - 1; ix++){
@@ -34,10 +33,9 @@ vector<string> select(vector<string> svec){
 		}
 		swap(svec[x], svec[i]);
 	}
-	return svec;
 }
 
-vector<string> insert(vector<string> svec){
+void insert(vector<string> &svec){
 	for (decltype(svec.size()) i = 1; i <= svec.size() - 1; i++){
 		auto ix = i;
 		while (svec[i] != *svec.begin() && ix != 0 && svec[i] < svec[ix - 1]){ 
@@ -48,10 +46,9 @@ vector<string> insert(vector<string> svec){
 			svec.erase(svec.begin() + i + 1);
 		}
 	}
-	return svec;
 }
 
-vector<string> merge(vector<string> svec){
+void merge(vector<string> &svec){
 	auto b = svec.begin();
 	auto mid = svec.begin() + svec.size()/2;
 	auto e = svec.end();
@@ -59,9 +56,9 @@ vector<string> merge(vector<string> svec){
 	vector<string> right = {mid, e};
 
 	if(left.size() >= 2)
-		left = merge(left);
+		merge(left);
 	if(right.size() >= 2)
-		right = merge(right);
+		merge(right);
 
 	decltype(left.size()) i = 0;
 	decltype(right.size()) j = 0;
@@ -88,5 +85,4 @@ vector<string> merge(vector<string> svec){
 		j++;
 		k++;
 	}
-	return svec;
 }
